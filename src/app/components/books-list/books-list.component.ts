@@ -26,12 +26,13 @@ export class BooksListComponent implements OnInit {
     this.getBooks();
   }
 
+  // tslint:disable-next-line:member-ordering
   booksList: Array<any>;
   getBooks() {
-    this.http.get('../../../../public/books.jsonX').subscribe((data) => {  
+    this.http.get('../../../../public/books.json').subscribe((data) => {
       this.booksList = data.json();
     });
-    
+
   }
 
   back() {

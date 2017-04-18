@@ -1,0 +1,9 @@
+[{
+    "name": "Express",
+    "genre": "Node"
+  },
+  {
+    "name": "Angular 2",
+    "genre": "SPA"
+  }
+]

@@ -1,7 +1,10 @@
-import { Injectable } from "@angular/core";
-import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from "@angular/http";
-import { Observable } from "rxjs/Rx";
-import { environment } from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import {
+  ConnectionBackend, RequestOptions, Request,
+  RequestOptionsArgs, Response, Http, Headers
+} from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class InterceptedHttp extends Http {
@@ -13,13 +16,27 @@ export class InterceptedHttp extends Http {
     return super.request(url, options);
   }
 
+  private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
+    if (options == null) {
+      options = new RequestOptions();
+    }
+    if (options.headers == null) {
+      options.headers = new Headers();
+    }
+    options.headers.append('Content-Type', 'application/json');
+
+    return options;
+  }
+
+  private updateUrl(req: string) {
+    return environment.origin + req;
+  }
+
   get(url: string, options?: RequestOptionsArgs): Observable<Response> {
 
     let res = super.get(url, this.getRequestOptionArgs(options)).map((dataRes: Response) => {
-
       console.log('success:', dataRes);
       return dataRes;
-
     }).catch((dataRes) => {
 
       console.log('catch:', dataRes);
@@ -30,7 +47,7 @@ export class InterceptedHttp extends Http {
     //   console.log('finally');
     //   return Observable.from(res);
     // });
-    
+
     // this.http.get('/orders')
     //   .map(res => res.json())
     //   .finally(() => this.isLoading = false)
@@ -57,19 +74,4 @@ export class InterceptedHttp extends Http {
     return super.delete(url, this.getRequestOptionArgs(options));
   }
 
-  private updateUrl(req: string) {
-    return environment.origin + req;
-  }
-
-  private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {
-    if (options == null) {
-      options = new RequestOptions();
-    }
-    if (options.headers == null) {
-      options.headers = new Headers();
-    }
-    options.headers.append('Content-Type', 'application/json');
-
-    return options;
-  }
 }

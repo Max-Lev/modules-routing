@@ -1,0 +1,17 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <a (click)="back()">Back</a>
+    <a [routerLink]="['/ganer']">Ganer</a>
+    <a [routerLink]="['/book','45']">Book ID</a>
+  </div>
+</div>
+
+<div>
+  <p>Books List:</p>
+  <div *ngFor="let book of booksList;let index=index;">
+    <p>
+      <input type="text" [(ngModel)]="book.name" value="book.name" />
+    </p>
+    <book [data]="book"></book>
+  </div>
+</div>

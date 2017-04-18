@@ -1,4 +1,10 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
+src/assets
+src/app/components/book
+src/app/components/gener
+src/app/components/store
+src/app/modules/
+main.ts
 
 # compiled output
 /dist
@@ -39,3 +45,19 @@ testem.log
 #System Files
 .DS_Store
 Thumbs.db
+.angular-cli.json
+src/tsconfig.spec.json
+src/tsconfig.app.json
+src/app/components/ganer
+src/app/app.component.css
+src/app/app.component.html
+src/app/app.component.spec.ts
+src/app/app.component.ts
+src/favicon.ico
+src/main.ts
+src/polyfills.ts
+src/styles.css
+src/test.ts
+protractor.conf.js
+src/index.html
+*.spec.ts
